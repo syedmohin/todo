@@ -27,8 +27,8 @@ public class TodoRest {
 
 	@GetMapping("get")
 	public List<String> get() {
-		var todos = repository.findAll();
-		var todosList = new ArrayList<Todo>();
+		Iterable<Todo> todos = repository.findAll();
+		List<Todo> todosList = new ArrayList<Todo>();
 		todos.forEach(todosList::add);
 		return todosList.stream().map(Todo::getTask).collect(Collectors.toList());
 	}
@@ -36,5 +36,10 @@ public class TodoRest {
 	@PostMapping("post")
 	public void insert(@RequestBody Todo todo) {
 		repository.save(todo);
+	}
+
+	@GetMapping("own")
+	public String owner() {
+		return "Syed Mohiuddin";
 	}
 }
