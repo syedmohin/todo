@@ -35,6 +35,7 @@ public class TodoRest {
 
 	@PostMapping("post")
 	public void insert(@RequestBody Todo todo) {
+		System.out.println("inserted");
 		repository.save(todo);
 	}
 
